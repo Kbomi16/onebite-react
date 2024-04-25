@@ -4,9 +4,9 @@ const Main = () => {
   return (
     <div>
       <h1>main</h1>
-      <h2>{number}</h2>
+      <h2>{number % 2 === 0 ? '짝수' : '홀수'}</h2>
     </div>
-  );
-};
+  )
+}
 
-export default Main;
+export default Main
