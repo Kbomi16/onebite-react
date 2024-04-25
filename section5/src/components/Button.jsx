@@ -17,9 +17,18 @@
 // export default Button
 
 function Button({ text, color, children }) {
+  const onClickButton = (e) => {
+    console.log(e)
+    console.log(text)
+  }
   return (
     <div>
-      <button style={{ color: color }}>
+      <button
+        style={{ color: color }}
+        onClick={onClickButton}
+        // onMouseEnter={onClickButton}
+
+      >
         {text} - {color.toUpperCase()}
         {children}
       </button>
