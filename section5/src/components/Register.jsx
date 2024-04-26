@@ -1,14 +1,9 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
+
+let count = 0
 
 function Register() {
-  const [input, setInput] = useState({
-    name: '',
-    birth: '',
-    country: '',
-    bio: '',
-  })
-
   // const [name, setName] = useState('이름')
   // const [birth, setBirth] = useState('')
   // const [country, setCountry] = useState('')
@@ -30,18 +25,48 @@ function Register() {
   //   setBio(e.target.value)
   // }
 
+  const [input, setInput] = useState({
+    name: '',
+    birth: '',
+    country: '',
+    bio: '',
+  })
+
+  const countObj = useRef(0)
+  const inputRef = useRef()
+
   const onChange = (e) => {
+    count++
+    countObj.current++
+    console.log(countObj.current)
+    console.log(count)
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     })
   }
 
+  const onSubmit = () => {
+    if (input.name === '') {
+      console.log(inputRef.current)
+      inputRef.current.focus()
+    }
+  }
+
   return (
     <>
       <div>
+        {/* <button
+          onClick={() => {
+            refObj.current++
+            console.log(refObj.current)
+          }}
+        >
+          ref+1
+        </button> */}
         <div>
           <input
+            ref={inputRef}
             name="name"
             value={input.name}
             type="text"
@@ -68,6 +93,8 @@ function Register() {
       <div>
         <textarea name="bio" value={input.bio} onChange={onChange} />
       </div>
+
+      <button onClick={onSubmit}>제출</button>
     </>
   )
 }
