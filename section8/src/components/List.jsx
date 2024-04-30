@@ -18,14 +18,12 @@ function List({ todos, onUpdate, onDelete }) {
     )
   }
 
-  const filteredTodos = getFilteredData()
-
   return (
     <div className="List">
       <h4>Todo List 🌱</h4>
-      <input placeholder="검색어를 입력하세요." onChange={onChangeSearch} />
+      <input placeholder="검색어를 입력하세요." value={search} onChange={onChangeSearch} />
       <div className="todos_wrapper">
-        {filteredTodos.map((todo) => {
+        {getFilteredData().map((todo) => {
           return (
             <TodoItem
               key={todo.id}

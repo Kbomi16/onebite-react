@@ -9,19 +9,19 @@ const mockData = [
     id: 0,
     isDone: false,
     content: 'React 공부하기',
-    createdDate: new Date().getTime(),
+    date: new Date().getTime(),
   },
   {
     id: 1,
     isDone: false,
     content: '빨래 널기',
-    createdDate: new Date().getTime(),
+    date: new Date().getTime(),
   },
   {
     id: 2,
     isDone: false,
     content: '노래 연습하기',
-    createdDate: new Date().getTime(),
+    date: new Date().getTime(),
   },
 ]
 
@@ -37,7 +37,7 @@ function App() {
       date: new Date().getTime(),
     }
 
-    setTodos([...todos, newTodo])
+    setTodos([newTodo, ...todos])
   }
 
   const onUpdate = (targetId) => {

@@ -12,7 +12,7 @@ function TodoItem({ id, isDone, content, date, onUpdate, onDelete }) {
 
   return (
     <div className="TodoItem">
-      <input readOnly type="checkbox" onChange={onChangeCheckbox} />
+      <input type="checkbox" checked={isDone} onChange={onChangeCheckbox} />
       <div className="content">{content}</div>
       <div className="date">{new Date(date).toLocaleDateString()}</div>
       <button onClick={onClickDeleteButton}>삭제</button>

@@ -14,7 +14,7 @@ function Editor({ onCreate }) {
       contentRef.current.focus()
       return
     }
-    onCreate()
+    onCreate(content)
     setContent('')
   }
 
