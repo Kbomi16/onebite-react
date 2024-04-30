@@ -8,13 +8,25 @@ const mockData = [
   {
     id: 0,
     isDone: false,
-    content: 'React 공부하기',
-    date: new Date().getTime(),
+    content: "React 공부하기",
+    createdDate: new Date().getTime(),
   },
-]
+  {
+    id: 1,
+    isDone: false,
+    content: "빨래 널기",
+    createdDate: new Date().getTime(),
+  },
+  {
+    id: 2,
+    isDone: false,
+    content: "노래 연습하기",
+    createdDate: new Date().getTime(),
+  },
+];
 
 function App() {
-  const [todos, setTodos] = useState([])
+  const [todos, setTodos] = useState(mockData)
   const idRef = useRef(3)
 
   const onCreate = (content) => {
@@ -28,11 +40,24 @@ function App() {
     setTodos([...todos, newTodo])
   }
 
+  const onUpdate = (targetId) => {
+    // todos state 값들 중에 targetId와 일치하는 id를 갖는 투두 아이템의 isDone변경
+    setTodos(todos.map((todo) => {
+      if(todo.id === targetId) {
+        return {
+          ...todo,
+          isDone: !todo.isDone
+        }
+      }
+      return todo
+    }))
+  }
+
   return (
     <div className="App">
       <Header />
       <Editor onCreate={onCreate} />
-      <List todos={todos} />
+      <List todos={todos} onUpdate={onUpdate} />
     </div>
   )
 }
