@@ -1,15 +1,15 @@
-import React from 'react';
+import React from 'react'
 import './TodoItem.css'
 
-function TodoItem() {
+function TodoItem({ id, isDone, content, date }) {
   return (
-    <div className='TodoItem'>
-      <input type="checkbox" />
-      <div className='content'>Todo...</div>
-      <div className='date'>Date</div>
+    <div className="TodoItem">
+      <input readOnly type="checkbox" />
+      <div className="content">{content}</div>
+      <div className="date">{new Date(date).toLocaleDateString()}</div>
       <button>삭제</button>
     </div>
-  );
+  )
 }
 
-export default TodoItem;
+export default TodoItem
