@@ -1,9 +1,16 @@
-import React, { useCallback, useReducer, useRef, useState } from 'react'
+import React, {
+  useCallback,
+  useReducer,
+  useRef,
+  useState,
+  createContext,
+} from 'react'
 import Header from './components/Header'
 import Editor from './components/Editor'
 import List from './components/List'
-import Exam from './components/Exam'
 import './App.css'
+
+export const TodoContext = createContext()
 
 const mockData = [
   {
@@ -56,7 +63,7 @@ function App() {
         date: new Date().getTime(),
       },
     })
-  },[])
+  }, [])
 
   const onUpdate = useCallback((targetId) => {
     dispatch({
@@ -76,8 +83,12 @@ function App() {
     <div className="App">
       {/* <Exam /> */}
       <Header />
-      <Editor onCreate={onCreate} />
-      <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
+      <TodoContext.Provider value={{
+        todos, onCreate, onUpdate, onDelete,
+      }}>
+        <Editor />
+        <List />
+      </TodoContext.Provider>
     </div>
   )
 }
